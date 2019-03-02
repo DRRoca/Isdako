@@ -27,7 +27,6 @@ class LocationComponentActivity : AppCompatActivity(), OnMapReadyCallback, Permi
     private var mapboxMap: MapboxMap? = null
     private var mapView: MapView? = null
 
-    //asdasdasdzxcsad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
