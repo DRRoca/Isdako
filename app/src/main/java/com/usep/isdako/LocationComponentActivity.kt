@@ -17,6 +17,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 
+
 /**
  * Use the LocationComponent to easily add a device location "puck" to a Mapbox map.
  */
@@ -26,6 +27,7 @@ class LocationComponentActivity : AppCompatActivity(), OnMapReadyCallback, Permi
     private var mapboxMap: MapboxMap? = null
     private var mapView: MapView? = null
 
+    //asdasdasdzxcsad
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
