@@ -1,15 +1,14 @@
 //package com.usep.isdako
 //
-//
+////import com.usep.isdako.R
+//import android.R
+//import android.annotation.SuppressLint
 //import android.os.Bundle
 //import android.support.v7.app.AppCompatActivity
 //import android.widget.Toast
-//
 //import com.mapbox.android.core.permissions.PermissionsListener
 //import com.mapbox.android.core.permissions.PermissionsManager
-//import com.mapbox.mapboxandroiddemo.R
 //import com.mapbox.mapboxsdk.Mapbox
-//import com.mapbox.mapboxsdk.location.LocationComponent
 //import com.mapbox.mapboxsdk.location.modes.CameraMode
 //import com.mapbox.mapboxsdk.location.modes.RenderMode
 //import com.mapbox.mapboxsdk.maps.MapView
@@ -17,10 +16,10 @@
 //import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 //import com.mapbox.mapboxsdk.maps.Style
 //
-//
 ///**
 // * Use the LocationComponent to easily add a device location "puck" to a Mapbox map.
 // */
+//@SuppressLint("Registered")
 //class LocationComponentActivity : AppCompatActivity(), OnMapReadyCallback, PermissionsListener {
 //
 //    private var permissionsManager: PermissionsManager? = null
@@ -32,10 +31,10 @@
 //
 //        // Mapbox access token is configured here. This needs to be called either in your application
 //        // object or in the same activity which contains the mapview.
-//        Mapbox.getInstance(this, getString(R.string.access_token))
+//        Mapbox.getInstance(this,getString(com.usep.isdako.R.string.accessToken))
 //
 //        // This contains the MapView in XML and needs to be called after the access token is configured.
-//        setContentView(R.layout.activity_location_component)
+//        setContentView(R.layout.activity_main)
 //
 //        mapView = findViewById(R.id.mapView)
 //        mapView!!.onCreate(savedInstanceState)
@@ -58,6 +57,7 @@
 //            val locationComponent = mapboxMap!!.locationComponent
 //
 //            // Activate with options
+//
 //            locationComponent.activateLocationComponent(this, loadedMapStyle)
 //
 //            // Enable to make component visible
