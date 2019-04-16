@@ -5,6 +5,15 @@
         xmlns:mapbox="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".LocationComponentActvity">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            mapbox:mapbox_cameraTargetLat = "7.0548782"
+            mapbox:mapbox_cameraTargetLng = "125.5680292"
+            mapbox:mapbox_cameraZoom = "12"
+    />
 
 </android.support.constraint.ConstraintLayout>
