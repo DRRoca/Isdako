@@ -3,6 +3,9 @@
     <string name="accessToken">pk.eyJ1IjoiZGVtcyIsImEiOiJjanMzMG5ucTAwOWhjNDRyMGV0aGphZDJuIn0.rAQHFl0OE25fHIrbqjjjXQ
     </string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <!--Basic user location permission toasts-->
 
 </resources>
