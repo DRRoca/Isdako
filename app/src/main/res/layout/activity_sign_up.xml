@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="@color/lightgreen" android:clipToPadding="false">
+        android:background="@color/lightgreen">
 
     <ImageView
             android:layout_width="218dp"
@@ -19,14 +19,13 @@
             android:layout_height="232dp" app:srcCompat="@drawable/hexagon" android:id="@+id/hexagonBackMid"
             android:layout_marginTop="371dp" android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true" android:layout_marginBottom="128dp"
-            android:layout_marginLeft="270dp" android:layout_marginRight="-105dp"/>
+            android:layout_marginStart="270dp" android:layout_marginEnd="-105dp"/>
 
     <ImageView
             android:layout_width="365dp"
             android:layout_height="209dp" app:srcCompat="@drawable/hexagon" android:id="@+id/hexagonBackLower"
             android:layout_marginTop="630dp" android:layout_alignParentTop="true" android:rotation="90"
             android:layout_marginBottom="-120dp" android:layout_marginLeft="-80dp"/>
-
 
     <ImageView
             android:layout_width="match_parent"
@@ -40,7 +39,7 @@
     <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PROJECT ISDAKO"
+            android:text="CREATE ACCOUNT"
             android:textColor="@color/darkgreen"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
             android:layout_marginTop="360dp"
@@ -50,57 +49,50 @@
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:hint="username/email"
+            android:hint="New email"
             android:background="@drawable/rounded_green"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
             android:layout_marginTop="400dp" android:layout_marginStart="55dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userEmail"/>
+            android:id="@+id/userNewEmail"/>
 
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
-            android:hint="password"
+            android:hint="New password"
             android:background="@drawable/rounded_green"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
             android:layout_marginTop="450dp" android:layout_marginStart="55dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:inputType="textPassword"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userPassword"/>
+            android:id="@+id/userNewPassword"/>
+    <AutoCompleteTextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:hint="Verify password"
+            android:background="@drawable/rounded_green"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="500dp" android:layout_marginStart="55dp"
+            android:textColor="@color/white" android:textAlignment="center"
+            android:inputType="textPassword"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/userVerifyPassword"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:textColor="@color/darkgreen"
-            android:text="LOG IN"
+            android:text="Create"
             android:textStyle="normal"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="180dp" android:fontFamily="sans-serif-condensed-medium"
+            android:layout_marginTop="550dp" android:fontFamily="sans-serif-condensed-medium"
             android:textSize="16sp"
-            android:id="@+id/loginButton" android:layout_marginTop="11dp" android:layout_below="@+id/userPassword"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No account yet?"
-            android:textColor="@color/white"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
-            android:textAlignment="textStart"
-            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="75dp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Create account"
-            android:textColor="@color/darkgreen"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
-            android:textAlignment="textStart"
-            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="210dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:textStyle="bold"
-            android:id="@+id/createAccount" tools:ignore="OnClick"/>
+            android:id="@+id/loginCreate"/>
+
+
+
 
 </RelativeLayout>
+

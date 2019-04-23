@@ -26,7 +26,7 @@ class StartActivity : AppCompatActivity() {
         val activityIntent:Intent
 
         if (user != null) {
-            activityIntent = Intent (this, LoginActivity::class.java)
+            activityIntent = Intent (this, MainActivity::class.java)
             startActivity(activityIntent)
         } else {
             activityIntent = Intent (this, LoginActivity::class.java)

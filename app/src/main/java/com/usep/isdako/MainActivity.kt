@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(), LoginFragment.OnFragmentInteractionLis
 //            .commit()
 //
 //          ** Activity Template
-        val activityIntent = Intent (this, StartActivity::class.java)
+        val activityIntent = Intent (this, LocationComponentActivity::class.java)
 
         startActivity(activityIntent)
 
