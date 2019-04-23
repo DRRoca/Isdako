@@ -3,6 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="lightgreennavbar">#769b83</color>
+    <color name="darkgreennavbar">#688a74</color>
     <color name="darkgreen">#5A7664</color>
     <color name="white">#FFFFFF</color>
     <color name="lightgreen">#85b094</color>

@@ -31,8 +31,8 @@ class LocationComponentActivity : AppCompatActivity(), OnMapReadyCallback, Permi
         // Mapbox access token is configured here. This needs to be called either in your application
         // object or in the same activity which contains the mapview.
         Mapbox.getInstance(this,getString(com.usep.isdako.R.string.accessToken))
-        setContentView(com.usep.isdako.R.layout.activity_location_component)
-        mapView = findViewById(com.usep.isdako.R.id.mapView)
+        setContentView(R.layout.activity_location_component)
+        mapView = findViewById(R.id.mapView)
         mapView!!.onCreate(savedInstanceState)
         mapView!!.getMapAsync(this)
     }

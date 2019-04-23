@@ -1,5 +1,6 @@
 package com.usep.isdako
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,22 +36,18 @@ class SignUpActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
-    fun updateUI(currentUser: FirebaseUser?) {
-
-    }
-
     private fun signUpUser(){
         if(!Patterns.EMAIL_ADDRESS.matcher(userNewEmail.text.toString()).matches()){
             userNewEmail.error = "Please enter valid email"
             userNewEmail.requestFocus()
             return
         }
-        if(userNewPassword.text.isEmpty()){
+        else if(userNewPassword.text.isEmpty()){
             userNewPassword.error = "Please enter password"
             userNewPassword.requestFocus()
             return
         }
-        if(userVerifyPassword.text.toString() != userNewPassword.text.toString()) {
+        else if(userVerifyPassword.text.toString() != userNewPassword.text.toString()) {
             userVerifyPassword.error = "Password did not match"
             userVerifyPassword.requestFocus()
             return
@@ -73,6 +70,13 @@ class SignUpActivity : AppCompatActivity() {
 
                 // ...
             }
+    }
+
+    private fun updateUI(currentUser: FirebaseUser?) {
+        if(currentUser != null){
+            startActivity(Intent (this, StartActivity::class.java))
+            finish()
+        }
     }
 
 }
