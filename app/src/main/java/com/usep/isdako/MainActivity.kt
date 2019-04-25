@@ -5,6 +5,7 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -12,15 +13,19 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.modes.CameraMode
 import com.mapbox.mapboxsdk.location.modes.RenderMode
-import com.mapbox.mapboxsdk.maps.MapView
-import com.mapbox.mapboxsdk.maps.MapboxMap
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
-import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.maps.*
+import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.camera.CameraPosition
+import com.mapbox.mapboxsdk.maps.MapboxMapOptions
+
+
 
 
 //import android.support.v4.app.FragmentManager
@@ -33,16 +38,23 @@ class MainActivity : AppCompatActivity(),
     InformationFragment.OnFragmentInteractionListener  {
 
     private lateinit var drawer: DrawerLayout
+    private lateinit var database: DatabaseReference
+
+    private lateinit var mapFragment: SupportMapFragment
 
     private var permissionsManager: PermissionsManager? = null
     private var mapboxMap: MapboxMap? = null
     private var mapView: MapView? = null
+
+
 
     lateinit var reportFragment: ReportFragment
     lateinit var informationFragment: InformationFragment
 //    lateinit var loginFragment: LoginFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        database = FirebaseDatabase.getInstance().reference
 
         Mapbox.getInstance(this,getString(R.string.accessToken))
         setContentView(R.layout.activity_main)
@@ -83,21 +95,26 @@ class MainActivity : AppCompatActivity(),
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.navMap -> {
-
+                supportFragmentManager
+                    .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
             R.id.navReport -> {
+//                supportFragmentManager
+//                    .popBackStackImmediate()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, reportFragment)
-//                    .addToBackStack(reportFragment.toString())
+                    .addToBackStack(reportFragment.toString())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
             R.id.navInformation -> {
+//                supportFragmentManager
+//                    .popBackStackImmediate()
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, informationFragment)
-//                    .addToBackStack(informationFragment.toString())
+                    .addToBackStack(informationFragment.toString())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
