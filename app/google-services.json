@@ -39,6 +39,14 @@
           }
         },
         {
+          "client_id": "607891236221-130n9cvpqcooluvagkn47vuq801r5pmr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.usep.isdako",
+            "certificate_hash": "fecd7a0efc799704801bc532f845addd98d54e49"
+          }
+        },
+        {
           "client_id": "607891236221-id67m5bbf2qnp9npvs55mbi8rc3osv8v.apps.googleusercontent.com",
           "client_type": 3
         }
