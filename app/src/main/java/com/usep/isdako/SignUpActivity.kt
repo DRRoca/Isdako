@@ -1,5 +1,6 @@
 package com.usep.isdako
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +10,18 @@ import android.widget.Toast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.usep.isdako.data.User
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.util.regex.Pattern
+import io.proximi.proximiiolibrary.ProximiioAPI
+import timber.log.Timber
 
 class SignUpActivity : AppCompatActivity() {
 
+    private lateinit var proximiioAPI: ProximiioAPI
     private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +44,12 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun signUpUser(){
-        if(!Patterns.EMAIL_ADDRESS.matcher(userNewEmail.text.toString()).matches()){
+        if(userBoatNumber.text.isEmpty()){
+            userBoatNumber.error = "Please enter boat number"
+            userBoatNumber.requestFocus()
+            return
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(userNewEmail.text.toString()).matches()){
             userNewEmail.error = "Please enter valid email"
             userNewEmail.requestFocus()
             return
@@ -58,6 +70,10 @@ class SignUpActivity : AppCompatActivity() {
                 if (!task.isSuccessful) return@addOnCompleteListener
 
                 val user = auth.currentUser
+
+
+
+                addUserToDatabase(userBoatNumber.text.toString())
                 updateUI(user)
             }
 
@@ -72,6 +88,20 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent (this, StartActivity::class.java))
             finish()
         }
+    }
+
+    @SuppressLint("LogNotTimber")
+    private fun addUserToDatabase(boatNumber: String){
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+        val user = User(uid, boatNumber)
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d("SignUpActivity","User info added to Firebase Database")
+            }
+            .addOnFailureListener {
+                Log.d("SignUpActivity", "Failed to set value to database: ${it.message}")
+            }
     }
 
 }

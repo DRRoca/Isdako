@@ -32,53 +32,71 @@
             android:layout_height="200dp"
             android:src="@drawable/logo"
             android:scaleType="fitCenter"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="123dp" android:layout_marginStart="0dp"
-            android:id="@+id/loginFront"/>
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="71dp" android:layout_marginStart="0dp"
+            android:id="@+id/loginFront" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"/>
 
     <TextView
-            android:layout_width="match_parent"
+            android:layout_width="272dp"
             android:layout_height="wrap_content"
             android:text="CREATE ACCOUNT"
             android:textColor="@color/darkgreen"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="360dp"
+            android:layout_alignParentStart="true"
             android:textAlignment="center"
-            android:textSize="24sp" android:fontFamily="sans-serif-black"/>
+            android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="70dp"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="70dp"
+            android:id="@+id/textCreateAccount" android:layout_marginTop="21dp"
+            android:layout_below="@+id/loginFront"/>
 
+
+    <AutoCompleteTextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:hint="Registered boat number"
+            android:background="@drawable/rounded_green"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="21dp" android:layout_marginStart="55dp"
+            android:textColor="@color/white" android:textAlignment="center"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/userBoatNumber" android:layout_alignParentEnd="true" android:layout_marginEnd="55dp"
+            android:layout_below="@+id/textCreateAccount"/>
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="New email"
             android:background="@drawable/rounded_green"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="400dp" android:layout_marginStart="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" android:layout_marginStart="55dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userNewEmail"/>
+            android:id="@+id/userNewEmail" android:layout_alignParentEnd="true" android:layout_marginEnd="55dp"
+            android:layout_below="@+id/userBoatNumber"/>
 
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="New password"
             android:background="@drawable/rounded_green"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="450dp" android:layout_marginStart="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" android:layout_marginStart="55dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:inputType="textPassword"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userNewPassword"/>
+            android:id="@+id/userNewPassword" android:layout_alignParentEnd="true" android:layout_marginEnd="55dp"
+            android:layout_below="@+id/userNewEmail"/>
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="Verify password"
             android:background="@drawable/rounded_green"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="500dp" android:layout_marginStart="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp" android:layout_marginStart="55dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:inputType="textPassword"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userVerifyPassword"/>
+            android:id="@+id/userVerifyPassword" android:layout_alignParentEnd="true" android:layout_marginEnd="55dp"
+            android:layout_below="@+id/userNewPassword"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -87,9 +105,9 @@
             android:textStyle="normal"
             android:layout_gravity="center"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="550dp" android:fontFamily="sans-serif-condensed-medium"
+            android:layout_marginTop="10dp" android:fontFamily="sans-serif-condensed-medium"
             android:textSize="16sp"
-            android:id="@+id/loginCreate"/>
+            android:id="@+id/loginCreate" android:layout_below="@+id/userVerifyPassword"/>
 
 
 
