@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <array name="images">
+    <item>@drawable/albacores</item>
+    <item>@drawable/atlanticbluefins</item>
+    <item>@drawable/bigeyes</item>
+    <item>@drawable/blackfins</item>
+
+    <item>@drawable/dogtooths</item>
+    <item>@drawable/littletunnys</item>
+    <item>@drawable/longtails</item>
+    <item>@drawable/mackerels</item>
+    <item>@drawable/pacificbluefins</item>
+    <item>@drawable/skipjacks</item>
+    <item>@drawable/southernbluefins</item>
+    <item>@drawable/yellowfins</item>
+
+  </array>
+
+  <string-array name="names">
+    <item>Albacore Tuna</item>
+    <item>Atlantic Bluefin</item>
+    <item>Bigeye Tuna</item>
+    <item>Blackfin Tuna</item>
+
+    <item>Dogtooth Tuna</item>
+    <item>Little Tunnys</item>
+    <item>Longtail Tuna</item>
+    <item>Mackerel Tuna</item>
+    <item>Pacific Bluefin Tuna</item>
+    <item>Skipjack Tuna</item>
+    <item>Southern Bluefin</item>
+    <item>Yellowfin Tuna</item>
+  </string-array>
+
+  <string-array name="descriptions">
+      <item>The Albacore Tuna(Thunnus alalunga), known also as the longfin tuna, is a species of tuna of the order Perciformes.
+        It is found in temperate and tropical waters across the globe in the epipelagic and mesopelagic zones.
+        </item>
+      <item>The Atlantic Bluefin Tuna (Thunnus thynnus) is a species of tuna in the family Scombridae.
+          It is variously known as the northern bluefin tuna (mainly when including Pacific bluefin as a subspecies),
+          giant bluefin tuna [for individuals exceeding 150 kg (330 lb)].
+          </item>
+      <item>Bigeye tuna, Thunnus obesus, is a species of true tuna of the genus Thunnus, belonging to the wider mackerel family Scombridae.
+          In Hawaiian, it is one of two species known as ʻahi; the other is yellowfin tuna.
+         </item>
+      <item>The Blackfin tuna (Thunnus atlanticus) is the smallest tuna species in the genus Thunnus,
+          generally growing to a maximum of 100 cm (39 in) in length and weighing 21 kg (46 lb).
+          Blackfin tuna are a warmer-water fish, preferring water temperatures over 20 °C.</item>
+      <item>Dogtooth tuna Gymnosarda unicolor, also known as white tuna, is a species of pelagic marine fish which belongs to the family Scombridae.
+        Dogtooth tuna can reach a length of 190–248 centimetres (75–98 in) in males, and a weight of 130 kg. </item>
+      <item>The Little Tunny (Euthynnus alletteratus) is the most common tuna in the Atlantic Ocean.
+        It is found in warm temperate and tropical waters of the Atlantic and the Mediterranean; in the western Atlantic, it ranges from Brazil to the New England states.
+       </item>
+      <item>The Longtail Tuna (Thunnus tonggol) is a species of tuna of tropical Indo-West Pacific waters.
+        </item>
+      <item>Euthynnus affinis, the kawakawa or mackerel tuna, is a species of ray-finned bony fish in the family Scombridae, or mackerel family.
+          This is an Indo-Pacific species which is found from the Red Sea to French Polynesia.</item>
+      <item>The Pacific bluefin tuna (Thunnus orientalis) is a predatory species of tuna found widely in the northern Pacific Ocean,
+          but it is migratory and also recorded as a visitor to the south Pacific.</item>
+      <item>The skipjack tuna (Katsuwonus pelamis) is a medium-sized perciform fish in the tuna family, Scombridae. It grows up to 1 m (3 ft) in length.
+          It is a cosmopolitan pelagic fish found in tropical and warm-temperate waters.</item>
+      <item>The southern bluefin tuna (Thunnus maccoyii) is a tuna of the family Scombridae.
+          At up to 2.5 metres (8.2 ft) and weighing up to 260 kilograms (570 lb), it is among the larger bony fishes.</item>
+      <item>The yellowfin tuna (Thunnus albacares) is a species of tuna found in pelagic waters of tropical and subtropical oceans worldwide.</item>
+  </string-array>
+
+    <string-array name="size">
+        <item>Recommended Fish  Size:  90 cm(35.44 inches)\nRecommended Catch per Day : 5 per Person </item>
+        <item>Recommended Fish  Size:  70 cm(27.55 inches)\nRecommended Catch per Day : 3 per Vessel/</item>
+        <item>Recommended Fish  Size:  90 cm(35.44 inches)\nRecommended Catch per Day : 5 per Person </item>
+        <item>Recommended Fish  Size: No minimum size limit \nRecommended Catch per Day : No catch Limit</item>
+        <item>Recommended Fish  Size: No minimum size limit \nRecommended Catch per Day : No catch Limit</item>
+        <item>Recommended Fish  Size: No minimum size limit \nRecommended Catch per Day : 100 pounds per Bag</item>
+        <item>Recommended Fish  Size:  90 cm(35.44 inches)\nRecommended Catch per Day : 5 per Person </item>
+        <item>Recommended Fish  Size: No minimum size limit \nRecommended Catch per Day : No catch Limit</item>
+        <item>Recommended Fish  Size:  70 cm(27.55 inches)\nRecommended Catch per Day : 3 per Vessel</item>
+        <item>Recommended Fish  Size: No minimum size limit \nRecommended Catch per Day : No catch Limit</item>
+        <item>Recommended Fish  Size:  90 cm(35.44 inches)\nRecommended Catch per Day : 2 per Person </item>
+        <item>Recommended Fish  Size:  90 cm(35.44 inches)\nRecommended Catch per Day : 5 per Person</item>
+    </string-array>
+
+
+
+
+</resources>
