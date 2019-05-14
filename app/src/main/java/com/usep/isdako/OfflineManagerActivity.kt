@@ -96,7 +96,7 @@
 //    }
 //    private fun downloadRegionDialog() {
 //        // Set up download interaction. Display a dialog
-//        // when the user clicks download button and require
+//        // when the user clicks downloa    d button and require
 //        // a user-provided region name
 //        val builder = AlertDialog.Builder(this@OfflineManagerActivity)
 //        val regionNameEdit = EditText(this@OfflineManagerActivity)
