@@ -24,7 +24,7 @@
     <ImageView
             android:layout_width="365dp"
             android:layout_height="209dp" app:srcCompat="@drawable/hexagon" android:id="@+id/hexagonBackLower"
-            android:layout_marginTop="630dp" android:layout_alignParentTop="true" android:rotation="90"
+            android:layout_marginTop="624dp" android:layout_alignParentTop="true" android:rotation="90"
             android:layout_marginBottom="-120dp" android:layout_marginLeft="-80dp"/>
 
 
@@ -42,33 +42,35 @@
             android:layout_height="wrap_content"
             android:text="PROJECT ISDAKO"
             android:textColor="@color/darkgreen"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="360dp"
+            android:layout_alignParentStart="true"
             android:textAlignment="center"
-            android:textSize="24sp" android:fontFamily="sans-serif-black"/>
+            android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginTop="24dp"
+            android:layout_marginStart="0dp" android:layout_below="@+id/loginFront" android:id="@+id/title"/>
 
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="username/email"
             android:background="@drawable/rounded_green"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="400dp" android:layout_marginStart="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="20dp" android:layout_marginStart="30dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userEmail"/>
+            android:id="@+id/userEmail" android:layout_alignParentEnd="true" android:layout_marginEnd="30dp"
+            android:layout_below="@+id/title"/>
 
     <AutoCompleteTextView
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:hint="password"
             android:background="@drawable/rounded_green"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="450dp" android:layout_marginStart="55dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="9dp" android:layout_marginStart="30dp"
             android:textColor="@color/white" android:textAlignment="center"
             android:inputType="textPassword"
             android:fontFamily="sans-serif-condensed"
-            android:id="@+id/userPassword"/>
+            android:id="@+id/userPassword" android:layout_alignParentEnd="true" android:layout_marginEnd="30dp"
+            android:layout_below="@+id/userEmail"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -85,22 +87,22 @@
             android:layout_height="wrap_content"
             android:text="No account yet?"
             android:textColor="@color/white"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
+            android:layout_alignParentStart="true"
             android:textAlignment="textStart"
-            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="75dp"/>
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="50dp"
+            android:id="@+id/noAccountYet" android:layout_marginTop="-180dp" android:layout_below="@+id/loginButton"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create account"
             android:textColor="@color/darkgreen"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="555dp"
             android:textAlignment="textStart"
-            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="210dp"
+            android:textSize="18sp" android:fontFamily="sans-serif"
             android:clickable="true"
             android:focusable="true"
             android:textStyle="bold"
-            android:id="@+id/createAccount" tools:ignore="OnClick"/>
+            android:id="@+id/createAccount" tools:ignore="OnClick" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="60dp" android:layout_toEndOf="@+id/noAccountYet"
+            android:layout_marginStart="8dp" android:layout_marginTop="-180dp" android:layout_below="@+id/loginButton"/>
 
 </RelativeLayout>
