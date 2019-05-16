@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.fragment_information.*
+import kotlinx.android.synthetic.main.fragment_information.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -41,8 +44,16 @@ class InformationFragment : androidx.fragment.app.Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_information, container, false)
+
+        view.buttonFishInfo.setOnClickListener {
+            (activity as AppCompatActivity).supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container, TunaListFragment.newInstance(), "tunaList")
+                .commit()
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_information, container, false)
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,4 +111,6 @@ class InformationFragment : androidx.fragment.app.Fragment() {
                 }
             }
     }
+
+
 }

@@ -46,7 +46,8 @@ class MainActivity : AppCompatActivity(),
 //    PermissionsListener,
     NavigationView.OnNavigationItemSelectedListener,
     ReportFragment.OnFragmentInteractionListener,
-    InformationFragment.OnFragmentInteractionListener  {
+    InformationFragment.OnFragmentInteractionListener,
+    TunaListFragment.OnTunaSelected {
 
     private lateinit var proximiioAPI: ProximiioAPI
     private lateinit var mapHelper: ProximiioMapHelper
@@ -158,7 +159,7 @@ class MainActivity : AppCompatActivity(),
         when (item.itemId) {
             R.id.navMap -> {
                 supportFragmentManager
-                    .popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
             R.id.navReport -> {
 //                supportFragmentManager
@@ -167,7 +168,7 @@ class MainActivity : AppCompatActivity(),
                     .beginTransaction()
                     .replace(R.id.fragment_container, reportFragment)
                     .addToBackStack(reportFragment.toString())
-                    .setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
             R.id.navInformation -> {
@@ -177,7 +178,7 @@ class MainActivity : AppCompatActivity(),
                     .beginTransaction()
                     .replace(R.id.fragment_container, informationFragment)
                     .addToBackStack(informationFragment.toString())
-                    .setTransition(androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit()
             }
             R.id.navHelp -> {
@@ -317,5 +318,17 @@ class MainActivity : AppCompatActivity(),
 
     }
 
+    override fun onContextItemSelected(item: MenuItem?): Boolean {
+        return super.onContextItemSelected(item)
+    }
 
+    override fun onTunaSelected(tunaModel: TunaModel) {
+        val detailsFragment =
+            TunaDetailsFragment.newInstance(tunaModel)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, detailsFragment, "tunaDetails")
+            .addToBackStack(null)
+            .commit()
+    }
 }

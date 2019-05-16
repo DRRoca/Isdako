@@ -13,7 +13,8 @@
             android:layout_height="match_parent"
             android:src="@drawable/background"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:id="@+id/loginBack" android:layout_marginTop="0dp" android:layout_marginStart="0dp"/>
+            android:id="@+id/loginBack" android:layout_marginTop="1dp" android:layout_marginStart="1dp"
+            android:background="#00FFFFFF" android:backgroundTint="#00FFFFFF" android:clickable="true"/>
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -29,23 +30,21 @@
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
             android:layout_marginTop="220dp"
             android:textAlignment="center"
-            android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="0dp"/>
-    <ImageView
-            android:layout_width="match_parent"
+            android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="0dp"
+            android:id="@+id/informationText"/>
+    <Button
+            android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/fishes"
-            android:scaleType="fitCenter"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="262dp" android:layout_marginStart="0dp"
-            android:clickable="true"
-            android:id="@+id/informationFishes"/>
+            android:id="@+id/buttonFishInfo" android:background="@drawable/fishes" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="129dp" android:layout_below="@+id/informationText"
+            android:layout_marginTop="18dp" android:layout_alignParentStart="true" android:layout_marginStart="132dp"/>
     <ImageView
             android:layout_width="match_parent"
             android:layout_height="153dp"
             android:src="@drawable/g"
             android:scaleType="fitCenter"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="420dp" android:layout_marginStart="4dp"
+            android:layout_marginTop="420dp" android:layout_marginStart="17dp"
             android:clickable="true"
             android:id="@+id/informationGears"/>
 </RelativeLayout>
