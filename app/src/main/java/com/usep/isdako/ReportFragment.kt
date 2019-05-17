@@ -7,6 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.usep.isdako.data.User
+import kotlinx.android.synthetic.main.fragment_report.*
+import kotlinx.android.synthetic.main.fragment_report.view.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -29,6 +35,9 @@ class ReportFragment : androidx.fragment.app.Fragment() {
     private var param2: String? = null
     private var listener: OnFragmentInteractionListener? = null
 
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,7 +51,12 @@ class ReportFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_report, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_report, container, false)
+
+        view.reportSubmit.setOnClickListener {
+            validateInput()
+        }
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -99,5 +113,41 @@ class ReportFragment : androidx.fragment.app.Fragment() {
 //                    putString(ARG_PARAM2, param2)
                 }
             }
+    }
+    private fun validateInput() {
+         if (reportTime.text.isEmpty()) {
+            reportTime.error = "Please enter time"
+            reportTime.requestFocus()
+            return
+        } else if (reportLength.text.isEmpty()) {
+            reportLength.error = "Please enter fish length"
+            reportLength.requestFocus()
+            return
+        } else if (reportWeight.text.isEmpty()) {
+            reportWeight.error = "Please enter fish weight"
+            reportWeight.requestFocus()
+            return
+        } else if (reportSpecies.text.isEmpty()) {
+            reportSpecies.error = "Please enter fish species"
+            reportSpecies.requestFocus()
+            return
+        }
+
+        addReportToDatabase(
+            reportTime.text.toString(),
+            reportLength.text.toString(),
+            reportWeight.text.toString(),
+            reportSpecies.text.toString())
+    }
+
+    private fun addReportToDatabase(
+        time: String,
+        lenght: String,
+        weight: String,
+        species: String
+    ) {
+//        val uid = FirebaseAuth.getInstance().uid ?: ""
+//        val ref = FirebaseDatabase.getInstance().getReference("/users/$uid")
+//        val user = User(uid, boatNumber)
     }
 }

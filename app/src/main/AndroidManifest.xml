@@ -11,6 +11,10 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".GearDetailActivity">
+        </activity>
+        <activity android:name=".GearInfoActivity">
+        </activity>
         <activity android:name=".OfflineManagerActivity">
         </activity>
         <activity android:name=".SignUpActivity">
@@ -26,18 +30,18 @@
                 android:name=".LoginActivity"
                 android:noHistory="true">
         </activity>
-
         <activity android:name=".LocationComponentActivity">
         </activity>
-
         <activity android:name=".MainActivity">
         </activity>
 
-        <receiver android:name=".BackgroundListener"  android:exported="false">
+        <receiver
+                android:name=".BackgroundListener"
+                android:exported="false">
             <intent-filter>
                 <action android:name="io.proximi.proximiiolibrary.action.POSITION"/>
                 <action android:name="io.proximi.proximiiolibrary.action.OUTPUT"/>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
     </application>

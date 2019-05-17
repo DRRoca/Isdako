@@ -28,103 +28,85 @@ android:background="@color/lightgreen">
         android:layout_alignParentStart="true" android:layout_alignParentTop="true"
         android:layout_marginTop="210dp"
         android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="30dp"/>
-<TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Location"
-        android:textColor="@color/white"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="250dp"
-        android:textAlignment="textStart"
-        android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="30dp"/>
-<AutoCompleteTextView
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_green"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="278dp" android:layout_marginStart="30dp"
-        android:textColor="@color/white" android:textAlignment="textStart"
-        android:fontFamily="sans-serif-condensed"
-        android:id="@+id/reportLocation"/>
 
-<TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Time"
-        android:textColor="@color/white"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="320dp"
-        android:textAlignment="textStart"
-        android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="30dp"/>
-<EditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:inputType="time"
-        android:ems="10"
-        android:background="@drawable/rounded_green"
-        android:layout_marginStart="30dp" android:layout_marginTop="348dp"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:textColor="@color/white" android:textAlignment="textStart"
-        android:fontFamily="sans-serif-condensed"
-        android:id="@+id/reportTime"/>
-<TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Length"
-        android:textColor="@color/white"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="390dp"
-        android:textAlignment="textStart"
-        android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="30dp"/>
-<EditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:background="@drawable/rounded_green"
-        android:layout_marginStart="30dp" android:layout_marginTop="418dp"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:textColor="@color/white" android:textAlignment="textStart"
-        android:fontFamily="sans-serif-condensed"
-        android:id="@+id/reportLength"/>
-<TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Weight"
-        android:textColor="@color/white"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="460dp"
-        android:textAlignment="textStart"
-        android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="30dp"/>
-<EditText
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:background="@drawable/rounded_green"
-        android:layout_marginStart="30dp" android:layout_marginTop="488dp"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:textColor="@color/white" android:textAlignment="textStart"
-        android:fontFamily="sans-serif-condensed"
-        android:id="@+id/reportWeight"/>
-<TextView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Species"
-        android:textColor="@color/white"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="530dp"
-        android:textAlignment="textStart"
-        android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="30dp"/>
-<AutoCompleteTextView
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:background="@drawable/rounded_green"
-        android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-        android:layout_marginTop="558dp" android:layout_marginStart="30dp"
-        android:textColor="@color/white" android:textAlignment="textStart"
-        android:fontFamily="sans-serif-condensed"
-        android:id="@+id/reportSpecies"/>
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="280dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="32dp"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:inputType="time"
+            android:ems="10"
+            android:background="@drawable/rounded_green"
+            android:layout_marginStart="32dp" android:layout_marginTop="308dp"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:textColor="@color/white" android:textAlignment="textStart"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/reportTime"/>
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Length"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="350dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="32dp"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:background="@drawable/rounded_green"
+            android:layout_marginStart="32dp" android:layout_marginTop="378dp"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:textColor="@color/white" android:textAlignment="textStart"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/reportLength"/>
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="420dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="32dp"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:background="@drawable/rounded_green"
+            android:layout_marginStart="32dp" android:layout_marginTop="448dp"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:textColor="@color/white" android:textAlignment="textStart"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/reportWeight"/>
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Species"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="490dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="32dp"/>
+    <AutoCompleteTextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_green"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="518dp" android:layout_marginStart="32dp"
+            android:textColor="@color/white" android:textAlignment="textStart"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/reportSpecies"/>
 <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"

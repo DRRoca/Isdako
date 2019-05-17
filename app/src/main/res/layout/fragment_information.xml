@@ -33,18 +33,17 @@
             android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="0dp"
             android:id="@+id/informationText"/>
     <Button
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:id="@+id/buttonFishInfo" android:background="@drawable/fishes" android:layout_alignParentEnd="true"
-            android:layout_marginEnd="129dp" android:layout_below="@+id/informationText"
-            android:layout_marginTop="18dp" android:layout_alignParentStart="true" android:layout_marginStart="132dp"/>
-    <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="153dp"
             android:layout_height="153dp"
-            android:src="@drawable/g"
-            android:scaleType="fitCenter"
-            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="420dp" android:layout_marginStart="17dp"
-            android:clickable="true"
-            android:id="@+id/informationGears"/>
+            android:id="@+id/buttonFishInfo" android:background="@drawable/fishes"
+            android:layout_alignParentStart="true" android:layout_marginStart="130dp"
+            android:layout_marginTop="29dp" android:layout_below="@+id/informationText"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="132dp"/>
+
+    <Button
+            android:layout_width="153dp"
+            android:layout_height="153dp"
+            android:id="@+id/buttonGearInfo" android:background="@drawable/g" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="130dp" android:layout_below="@+id/buttonFishInfo"
+            android:layout_marginTop="17dp" android:layout_alignParentStart="true" android:layout_marginStart="130dp"/>
 </RelativeLayout>

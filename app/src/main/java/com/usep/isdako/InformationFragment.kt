@@ -1,12 +1,14 @@
 package com.usep.isdako
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_information.*
 import kotlinx.android.synthetic.main.fragment_information.view.*
@@ -50,7 +52,11 @@ class InformationFragment : androidx.fragment.app.Fragment() {
             (activity as AppCompatActivity).supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragment_container, TunaListFragment.newInstance(), "tunaList")
+                .addToBackStack(TunaListFragment.toString())
                 .commit()
+        }
+        view.buttonGearInfo.setOnClickListener {
+            startActivity(Intent (activity, GearInfoActivity::class.java))
         }
         // Inflate the layout for this fragment
         return view

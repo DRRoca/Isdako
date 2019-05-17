@@ -9,7 +9,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <!--Basic user location permission toasts-->
 
-
+    <string name="thumbnail">thumbnail</string>
     <string name="description_format">%1$s\n\n%2$s</string>
 
 </resources>
