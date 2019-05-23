@@ -32,7 +32,6 @@ class SignUpActivity : AppCompatActivity() {
 
         loginCreate.setOnClickListener{
             signUpUser()
-
         }
     }
 

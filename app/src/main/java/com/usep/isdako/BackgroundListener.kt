@@ -96,7 +96,7 @@ class BackgroundListener : BroadcastReceiver() {
     companion object {
         private val TAG = "BackgroundListener"
 
-        val NOTIFICATION_CHANNEL_ID = "io.proximi.proximiiodemo"
-        val NOTIFICATION_CHANNEL_NAME = "Proximi.io Demo Notifications"
+        const val NOTIFICATION_CHANNEL_ID = "com.usep.isdako"
+        const val NOTIFICATION_CHANNEL_NAME = "Isdako Notifications"
     }
 }

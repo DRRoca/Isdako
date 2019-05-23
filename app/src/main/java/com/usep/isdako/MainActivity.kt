@@ -1,11 +1,10 @@
 package com.usep.isdako
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.content.Context
+//import android.app.Notification
+//import android.app.NotificationChannel
+//import android.app.NotificationManager
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.NonNull
@@ -14,23 +13,17 @@ import com.google.android.material.navigation.NavigationView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.NotificationCompat
+//import androidx.media.app.NotificationCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.mapbox.android.core.permissions.PermissionsListener
-import com.mapbox.android.core.permissions.PermissionsManager
-import com.mapbox.mapboxsdk.Mapbox
+import com.google.firebase.database.*
+import com.usep.isdako.Isdako.Companion.CHANNEL_GEOFENCE_EVENT_ID
 //import com.mapbox.mapboxsdk.location.modes.CameraMode
 //import com.mapbox.mapboxsdk.location.modes.RenderMode
-import com.mapbox.mapboxsdk.maps.*
-import com.mapbox.mapboxsdk.geometry.LatLng
-import com.mapbox.mapboxsdk.camera.CameraPosition
-import com.mapbox.mapboxsdk.maps.MapboxMapOptions
 import io.proximi.proximiiolibrary.ProximiioAPI
 import io.proximi.proximiiolibrary.ProximiioGeofence
 import io.proximi.proximiiolibrary.ProximiioListener
@@ -49,13 +42,14 @@ class MainActivity : AppCompatActivity(),
     InformationFragment.OnFragmentInteractionListener,
     TunaListFragment.OnTunaSelected {
 
+    private lateinit var notificationManager: NotificationManagerCompat
     private lateinit var proximiioAPI: ProximiioAPI
     private lateinit var mapHelper: ProximiioMapHelper
 
     val TAG = "Isdako"
 
     private lateinit var drawer: androidx.drawerlayout.widget.DrawerLayout
-    private lateinit var database: DatabaseReference
+//    private lateinit var database: DatabaseReference
 /**
  *Mapbox codes
     private var permissionsManager: PermissionsManager? = null
@@ -71,86 +65,103 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        database = FirebaseDatabase.getInstance().reference
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val preferences = getSharedPreferences("Proximi.io Map Demo", MODE_PRIVATE)
-        if (!preferences.contains("notificationChannel")) {
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            if (notificationManager != null) {
-                val channel = NotificationChannel(
-                    BackgroundListener.NOTIFICATION_CHANNEL_ID,
-                    BackgroundListener.NOTIFICATION_CHANNEL_NAME,
-                    NotificationManager.IMPORTANCE_HIGH
-                )
-                notificationManager.createNotificationChannel(channel)
-                preferences.edit()
-                    .putBoolean("notificationChannel", true)
-                    .apply()
+        notificationManager = NotificationManagerCompat.from(this)
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val preferences = getSharedPreferences("Isdako", MODE_PRIVATE)
+//            if (!preferences.contains("notificationChannel")) {
+//                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//                if (notificationManager != null) {
+//                    val channel = NotificationChannel(
+//                        BackgroundListener.NOTIFICATION_CHANNEL_ID  ,
+//                        BackgroundListener.NOTIFICATION_CHANNEL_NAME,
+//                        NotificationManager.IMPORTANCE_HIGH
+//                    )
+//                    notificationManager.createNotificationChannel(channel)
+//                    preferences.edit()
+//                        .putBoolean("notificationChannel", true)
+//                        .apply()
+//                }
+//            }
+//        }
+
+
+        val geofenceRef = FirebaseDatabase.getInstance().getReference("geofence")
+        geofenceRef.keepSynced(true)
+
+        val options = ProximiioOptions()
+            .setNotificationMode(ProximiioOptions.NotificationMode.ENABLED)
+
+        // Create our Proximi.io listener
+        proximiioAPI = ProximiioAPI(TAG, this, options)
+        proximiioAPI.setListener(object : ProximiioListener() {
+            override fun geofenceEnter(geofence: ProximiioGeofence) {
+    //            Log.d(TAG, "Geofence enter: " + geofence.metadatatoString())
+//                geofenceRef.child(geofence.id).child("enterNotif")
+//                geofenceRef.addChildEventListener{}
+
+                geofenceRef.child(geofence.id).addValueEventListener(getGeofenceEnterInfo)
             }
-        }
-    }
 
-    val options = ProximiioOptions()
-        .setNotificationMode(ProximiioOptions.NotificationMode.ENABLED)
+            override fun geofenceExit(geofence: ProximiioGeofence, @Nullable dwellTime: Long?) {
 
-    // Create our Proximi.io listener
-    proximiioAPI = ProximiioAPI(TAG, this, options)
-    proximiioAPI.setListener(object : ProximiioListener() {
-        override fun geofenceEnter(geofence: ProximiioGeofence) {
-            Log.d(TAG, "Geofence enter: " + geofence.name)
-        }
+                geofenceRef.child(geofence.id).addValueEventListener(getGeofenceExitInfo)
+//                Log.d(TAG, "Geofence exit: " + geofence.name + ", dwell time: " + dwellTime.toString())
+            }
 
-        override fun geofenceExit(geofence: ProximiioGeofence, @Nullable dwellTime: Long?) {
-            Log.d(TAG, "Geofence exit: " + geofence.name + ", dwell time: " + dwellTime.toString())
-        }
+            override fun loginFailed(loginError: LoginError) {
+                Log.e(TAG, "LoginError! ($loginError)")
+            }
+        })
+        proximiioAPI.setAuth(AUTH, true)
+        proximiioAPI.setActivity(this)
 
-        override fun loginFailed(loginError: LoginError) {
-            Log.e(TAG, "LoginError! ($loginError)")
-        }
-    })
-    proximiioAPI.setAuth(AUTH, true)
-    proximiioAPI.setActivity(this)
+        // Initialize the map
+        var mapView: ProximiioMapView = findViewById(R.id.map)
+        mapHelper = ProximiioMapHelper.Builder(TAG, this, mapView, AUTH, savedInstanceState)
+            .showFloorPlan(false)
+            .showFloorIndicator(false)
+            .floorChangeButtons(false)
+            .showFloorNumber(false)
+            .showGeofenceMarkers(true)
+            .build()
+    /**
+     *Mapbox codes
+            Mapbox.getInstance(this,getString(R.string.accessToken))
+            setContentView(R.layout.activity_main)
+            mapView = findViewById(R.id.mapView)
+            mapView!!.onCreate(savedInstanceState)
+            mapView!!.getMapAsync(this)
+    */
 
-    // Initialize the map
-    var mapView: ProximiioMapView = findViewById(R.id.map)
-    mapHelper = ProximiioMapHelper.Builder(TAG, this, mapView, AUTH, savedInstanceState)
-        .build()
-/**
- *Mapbox codes
-        Mapbox.getInstance(this,getString(R.string.accessToken))
-        setContentView(R.layout.activity_main)
-        mapView = findViewById(R.id.mapView)
-        mapView!!.onCreate(savedInstanceState)
-        mapView!!.getMapAsync(this)
-*/
+            drawer = findViewById(R.id.drawer_layout)
+            val navigationView: NavigationView = findViewById(R.id.nav_view)
+            navigationView.setNavigationItemSelectedListener(this)
 
-        drawer = findViewById(R.id.drawer_layout)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(this)
+            val toggle = ActionBarDrawerToggle(
+                this, drawer,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            )
+            drawer.addDrawerListener(toggle)
+            toggle.syncState()
 
-        val toggle = ActionBarDrawerToggle(
-            this, drawer,
-            R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        )
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
+    //          **Fragment Template
 
-//          **Fragment Template
-
-        reportFragment = ReportFragment.newInstance()
-        informationFragment = InformationFragment.newInstance()
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.container, loginFragment)
-//            .addToBackStack(loginFragment.toString())
-//            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//            .commit()
-//
-//          ** Activity Template
-//        val activityIntent = Intent (this, LocationComponentActivity::class.java)
-//
-//        startActivity(activityIntent)
+            reportFragment = ReportFragment.newInstance()
+            informationFragment = InformationFragment.newInstance()
+    //        supportFragmentManager
+    //            .beginTransaction()
+    //            .replace(R.id.container, loginFragment)
+    //            .addToBackStack(loginFragment.toString())
+    //            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+    //            .commit()
+    //
+    //          ** Activity Template
+    //        val activityIntent = Intent (this, LocationComponentActivity::class.java)
+    //
+    //        startActivity(activityIntent)
 
 
     }
@@ -162,8 +173,8 @@ class MainActivity : AppCompatActivity(),
                     .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
             R.id.navReport -> {
-//                supportFragmentManager
-//                    .popBackStackImmediate()
+                supportFragmentManager
+                    .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, reportFragment)
@@ -172,8 +183,8 @@ class MainActivity : AppCompatActivity(),
                     .commit()
             }
             R.id.navInformation -> {
-//                supportFragmentManager
-//                    .popBackStackImmediate()
+                supportFragmentManager
+                    .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, informationFragment)
@@ -213,6 +224,49 @@ class MainActivity : AppCompatActivity(),
         } else {
             super.onBackPressed()
         }
+    }
+
+    val getGeofenceEnterInfo = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            // Get Post object and use the values to update the UI
+//            val notificationMessage = dataSnapshot.value
+//            Toast.makeText(applicationContext,dataSnapshot.value.toString(),Toast.LENGTH_LONG).show()
+//            Log.e(TAG, "NotifyUSER" + dataSnapshot.value.toString())
+            geofenceEventNotifChannel(dataSnapshot.child("enterNotif").value.toString(),"You are entering " + dataSnapshot.child("geofenceName").value.toString())
+            // ...
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            // Getting Post failed, log a message
+            Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            // ...
+        }
+    }
+
+    val getGeofenceExitInfo = object : ValueEventListener {
+        override fun onDataChange(dataSnapshot: DataSnapshot) {
+            geofenceEventNotifChannel(dataSnapshot.child("exitNotif").value.toString(),"Exited " + dataSnapshot.child("geofenceName").value.toString())
+        }
+
+        override fun onCancelled(databaseError: DatabaseError) {
+            // Getting Post failed, log a message
+            Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            // ...
+        }
+    }
+
+    fun geofenceEventNotifChannel(message: String, title: String){
+        var notification = NotificationCompat.Builder(this, CHANNEL_GEOFENCE_EVENT_ID)
+            .setSmallIcon(R.drawable.notification)
+            .setContentTitle(title)
+            .setContentText(message)
+            .setAutoCancel(false)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setBadgeIconType(NotificationCompat.BADGE_ICON_LARGE)
+            .build()
+
+        notificationManager.notify(1, notification)
     }
 /**
  *Mapbox codes
