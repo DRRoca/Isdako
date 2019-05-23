@@ -93,10 +93,30 @@ android:background="@color/lightgreen">
     <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Species"
+            android:text="Quantity"
             android:textColor="@color/white"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
             android:layout_marginTop="457dp"
+            android:textAlignment="textStart"
+            android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="31dp"/>
+    <EditText
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:background="@drawable/rounded_green"
+            android:layout_marginStart="31dp" android:layout_marginTop="485dp"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:textColor="@color/white" android:textAlignment="textStart"
+            android:fontFamily="sans-serif-condensed"
+            android:id="@+id/reportQuantity" android:paddingEnd="10dp" android:paddingStart="10dp"/>
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Species"
+            android:textColor="@color/white"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="530dp"
             android:textAlignment="textStart"
             android:textSize="18sp" android:fontFamily="sans-serif" android:layout_marginStart="31dp"/>
     <Spinner
@@ -105,7 +125,7 @@ android:background="@color/lightgreen">
             android:layout_height="40dp"
             android:background="@drawable/rounded_green"
             android:layout_alignParentStart="true" android:layout_alignParentTop="true"
-            android:layout_marginTop="485dp" android:layout_marginStart="31dp"
+            android:layout_marginTop="555dp" android:layout_marginStart="31dp"
             android:textColor="@color/white" android:textAlignment="textStart"
             android:fontFamily="sans-serif-condensed"
             android:id="@+id/reportSpecies" android:paddingStart="10dp" android:paddingEnd="10dp"/>

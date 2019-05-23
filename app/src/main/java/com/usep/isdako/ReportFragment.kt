@@ -21,12 +21,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.fragment_report.*
 import com.usep.isdako.data.Report
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_report.view.*
 import java.util.*
-import android.app.Activity
-
-
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -175,9 +171,18 @@ class ReportFragment : androidx.fragment.app.Fragment() {
     @SuppressLint("SetTextI18n")
     var ondate: DatePickerDialog.OnDateSetListener =
         DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            var month: String = (monthOfYear + 1).toString()
+            var day: String = dayOfMonth.toString()
+
+            if(monthOfYear + 1 < 10) {
+                month = "0" + (monthOfYear + 1).toString()
+            }
+
+            if(dayOfMonth < 10) {
+                day = "0"+ (dayOfMonth).toString()
+            }
             reportTime.setText(
-                (monthOfYear + 1).toString() + "-" + dayOfMonth.toString()
-                        + "-" + year.toString()
+                "$year-$month-$day"
             )
             showTimePicker()
         }
@@ -185,8 +190,18 @@ class ReportFragment : androidx.fragment.app.Fragment() {
     @SuppressLint("SetTextI18n")
     var ontime: TimePickerDialog.OnTimeSetListener=
         TimePickerDialog.OnTimeSetListener { view, hour, minute ->
+            var hr: String = (hour + 1).toString()
+            var min: String = minute.toString()
+            if(hour + 1 < 10) {
+                hr = "0" + (hour + 1).toString()
+            }
+
+            if(minute + 1 < 10) {
+                min = "0" + (minute).toString()
+            }
+
             reportTime.setText(
-                reportTime.text.toString() + " " + (hour + 1).toString() + ":" + minute.toString()
+                reportTime.text.toString() + " " + hr + ":" + min
             )
         }
 
@@ -267,23 +282,29 @@ class ReportFragment : androidx.fragment.app.Fragment() {
             reportWeight.error = "Please enter fish weight"
             reportWeight.requestFocus()
             return
+        } else if (reportQuantity.text.isEmpty()) {
+            reportQuantity.error = "Please enter fish weight"
+            reportQuantity.requestFocus()
+            return
         } else if (reportSpecies.toString().isEmpty()) {
             return
         }
         addReportToDatabase(
             reportTime.text.toString(),
             reportLength.text.toString().toFloat(),
-            reportWeight.text.toString().toFloat())
+            reportWeight.text.toString().toFloat(),
+            reportQuantity.text.toString().toInt())
     }
 
     private fun addReportToDatabase(
         time: String,
         length: Float,
-        weight: Float
+        weight: Float,
+        quantity: Int
     ) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().reference
-        val report = Report(uid, lat, lng, time, length, weight, species)
+        val report = Report(uid, lat, lng, time, length, weight, quantity, species)
         ref.child("reports/").push().setValue(report)
             .addOnSuccessListener {
                 closeFragment()
