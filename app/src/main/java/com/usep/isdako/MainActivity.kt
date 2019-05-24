@@ -65,8 +65,6 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
         notificationManager = NotificationManagerCompat.from(this)
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -121,6 +119,8 @@ class MainActivity : AppCompatActivity(),
         // Initialize the map
         var mapView: ProximiioMapView = findViewById(R.id.map)
         mapHelper = ProximiioMapHelper.Builder(TAG, this, mapView, AUTH, savedInstanceState)
+            .initialPositioningZoom(true)
+            .initialPositioningZoomLevel(12F)
             .showFloorPlan(false)
             .showFloorIndicator(false)
             .floorChangeButtons(false)
@@ -368,7 +368,7 @@ class MainActivity : AppCompatActivity(),
 
     companion object{
 
-        const val AUTH = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6ImRiYWJiMjAxLTFmYjYtNDM0NC1iOWE4LWI1MzY1MzM5Y2M0NSIsInR5cGUiOiJhcHBsaWNhdGlvbiIsImFwcGxpY2F0aW9uX2lkIjoiMDI0ZWNhYTktMDk0Yy00Y2Q2LTliYWMtNzU2NzE2NDA3ZjNiIn0.bNB0V5DR1JHt-u_FZeXrBoGdUgCIPk_XrWi9kB0eAZU"
+        const val AUTH = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImlzcyI6IjVjMTI5ZmY1LWVlZmItNGMwMi1hNGQ2LTM4YmUzODE5NDBmOCIsInR5cGUiOiJhcHBsaWNhdGlvbiIsImFwcGxpY2F0aW9uX2lkIjoiMjkyMTZjY2YtMTM2My00NDZkLWJmNTEtZDE4NzhjZDZiYTRjIn0.N6fZsQ57d3iWxVRbOF8tLJFpEOt8pmRHfNZzFC1PBgs"
 
     }
 

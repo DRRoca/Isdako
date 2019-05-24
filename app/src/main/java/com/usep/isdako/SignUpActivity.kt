@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.usep.isdako.data.User
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import io.proximi.proximiiolibrary.ProximiioAPI
+import io.proximi.proximiiolibrary.ProximiioOptions
 import timber.log.Timber
 
 class SignUpActivity : AppCompatActivity() {
@@ -22,6 +23,8 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var proximiioAPI: ProximiioAPI
     private lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
+
+    val TAG = "Isdako"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +36,9 @@ class SignUpActivity : AppCompatActivity() {
         loginCreate.setOnClickListener{
             signUpUser()
         }
+        val options = ProximiioOptions()
+            .setNotificationMode(ProximiioOptions.NotificationMode.ENABLED)
+        proximiioAPI = ProximiioAPI(TAG, this, options)
     }
 
     public override fun onStart() {
@@ -101,6 +107,7 @@ class SignUpActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Log.d("SignUpActivity", "Failed to set value to database: ${it.message}")
             }
+
     }
 
 }

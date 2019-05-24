@@ -307,9 +307,10 @@ class ReportFragment : androidx.fragment.app.Fragment() {
         val report = Report(uid, lat, lng, time, length, weight, quantity, species)
         ref.child("reports/").push().setValue(report)
             .addOnSuccessListener {
-                closeFragment()
-                Toast.makeText(activity, "Report Submitted Successfully", Toast.LENGTH_SHORT).show()
+
             }
+        closeFragment()
+        Toast.makeText(activity, "Report Submitted Successfully", Toast.LENGTH_SHORT).show()
     }
 
     private fun closeFragment() {
