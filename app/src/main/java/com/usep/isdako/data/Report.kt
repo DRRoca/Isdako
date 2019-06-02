@@ -1,11 +1,7 @@
 package com.usep.isdako.data
 
 data class Report(
-    val userId: String,
-    var lat: Double,
-    var lng: Double,
-    var time: String,
-    var length: Float,
-    var weight: Float,
-    var quantity: Int,
-    var species: String)
+    var type: String,
+    var properties: Properties,
+    var geometry: Geometry
+)

@@ -19,6 +19,8 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.usep.isdako.data.Geometry
+import com.usep.isdako.data.Properties
 import kotlinx.android.synthetic.main.fragment_report.*
 import com.usep.isdako.data.Report
 import kotlinx.android.synthetic.main.fragment_report.view.*
@@ -304,7 +306,10 @@ class ReportFragment : androidx.fragment.app.Fragment() {
     ) {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().reference
-        val report = Report(uid, lat, lng, time, length, weight, quantity, species)
+        val geometry = Geometry(listOf(lng, lat),"Point")
+        val properties = Properties(uid, time, length, weight, quantity, species)
+        val report = Report("Feature",properties,geometry)
+//        val report = Report(uid, lat, lng, time, length, weight, quantity, species)
         ref.child("reports/").push().setValue(report)
             .addOnSuccessListener {
 

@@ -11,5 +11,8 @@
 
     <string name="thumbnail">thumbnail</string>
     <string name="description_format">%1$s\n\n%2$s</string>
-
+    <string name="species">Species: %1$s</string>
+    <string name="length">Length: %1$s</string>
+    <string name="weight">Weight: %1$s</string>
+    <string name="quantity">Quantity: %1$s</string>
 </resources>
