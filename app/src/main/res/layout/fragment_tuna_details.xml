@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="@drawable/background">
+        xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/background">
 
   <data>
 
@@ -9,8 +9,8 @@
       type="com.usep.isdako.TunaModel" />
   </data>
 
-  <ScrollView xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+  <ScrollView
+          android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
     tools:ignore="RtlHardcoded">
@@ -42,18 +42,24 @@
         android:scaleType="centerCrop" />
 
       <TextView
-        android:id="@+id/description"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/tuna_detail_description_margin_left"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="@dimen/tuna_detail_description_margin_right"
-        android:layout_marginBottom="@dimen/tuna_detail_description_margin_bottom"
-        android:autoLink="web"
-        android:text="@{tunaModel.text}" />
+              android:id="@+id/description"
+              style="@style/TextAppearance.AppCompat.Body1"
+              android:layout_width="match_parent"
+              android:layout_height="262dp"
+              android:layout_marginLeft="@dimen/tuna_detail_description_margin_left"
+              android:layout_marginTop="0dp"
+              android:layout_marginRight="@dimen/tuna_detail_description_margin_right"
+              android:layout_marginBottom="@dimen/tuna_detail_description_margin_bottom"
+              android:autoLink="web"
+              android:text="@{tunaModel.text}"/>
+      <Button
+              android:text="Show Report Map"
+              android:layout_width="@dimen/fui_auth_method_button_width"
+              android:layout_height="@dimen/fui_min_height_target" android:id="@+id/showMap"/>
 
     </LinearLayout>
+
+
 
   </ScrollView>
 </layout>

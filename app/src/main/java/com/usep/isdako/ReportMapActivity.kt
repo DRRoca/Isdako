@@ -1,5 +1,6 @@
 package com.usep.isdako
 
+import android.annotation.SuppressLint
 import android.graphics.*
 import android.os.AsyncTask
 import android.os.Bundle
@@ -10,13 +11,20 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import com.google.gson.Gson
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.BubbleLayout
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
+import com.mapbox.mapboxsdk.location.LocationComponentOptions
+import com.mapbox.mapboxsdk.location.modes.CameraMode
+import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
@@ -29,7 +37,9 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import java.lang.ref.WeakReference
 import java.util.*
 
-class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener {
+class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMapClickListener, PermissionsListener {
+
+    private var permissionsManager: PermissionsManager = PermissionsManager(this)
     private lateinit var mapView:MapView
     private lateinit var mapboxMap:MapboxMap
     private lateinit var source:GeoJsonSource
@@ -75,9 +85,10 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
                             " ]\n" +
                             "}")
                     Log.i("FirebaseJSON", json)
-                    if (jsonDataTask == null) {
-                        jsonDataTask = LoadGeoJsonDataTask(this@ReportMapActivity, json).execute()
+                    if(::jsonDataTask.isInitialized){
+                        return
                     }
+                    jsonDataTask = LoadGeoJsonDataTask(this@ReportMapActivity, json).execute()
                 }
 
                 override fun onCancelled(databaseError:DatabaseError) {
@@ -87,8 +98,67 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
                 }
             })
             mapboxMap.addOnMapClickListener(this@ReportMapActivity)
+            enableLocationComponent(it)
+            mapboxMap.uiSettings.isAttributionEnabled = false
+            mapboxMap.uiSettings.isLogoEnabled = false
+//            mapboxMap.uiSettings.isz = true
         }
     }
+
+    @SuppressLint("MissingPermission")
+    private fun enableLocationComponent(loadedMapStyle: Style) {
+        // Check if permissions are enabled and if not request
+        if (PermissionsManager.areLocationPermissionsGranted(this)) {
+
+            // Create and customize the LocationComponent's options
+            val customLocationComponentOptions = LocationComponentOptions.builder(this)
+                .trackingGesturesManagement(true)
+                .accuracyColor(ContextCompat.getColor(this, R.color.bluelight))
+                .build()
+
+            val locationComponentActivationOptions = LocationComponentActivationOptions.builder(this, loadedMapStyle)
+                .locationComponentOptions(customLocationComponentOptions)
+                .build()
+
+            // Get an instance of the LocationComponent and then adjust its settings
+            mapboxMap.locationComponent.apply {
+
+                // Activate the LocationComponent with options
+                activateLocationComponent(locationComponentActivationOptions)
+
+                // Enable to make the LocationComponent visible
+                isLocationComponentEnabled = true
+
+                // Set the LocationComponent's camera mode
+                cameraMode = CameraMode.TRACKING
+
+                // Set the LocationComponent's render mode
+                renderMode = RenderMode.COMPASS
+            }
+
+        } else {
+            permissionsManager = PermissionsManager(this)
+            permissionsManager.requestLocationPermissions(this)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        permissionsManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    override fun onExplanationNeeded(permissionsToExplain: List<String>) {
+        Toast.makeText(this, R.string.user_location_permission_explanation, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onPermissionResult(granted: Boolean) {
+        if (granted) {
+            enableLocationComponent(mapboxMap.style!!)
+        } else {
+            Toast.makeText(this, R.string.user_location_permission_not_granted, Toast.LENGTH_LONG).show()
+            finish()
+        }
+    }
+
     override fun onMapClick(@NonNull point:LatLng):Boolean {
         return handleClickIcon(mapboxMap.projection.toScreenLocation(point))
     }
@@ -99,14 +169,11 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
      */
     fun setUpData(collection:FeatureCollection) {
         featureCollection = collection
-        if (mapboxMap != null)
-        {
-            mapboxMap.getStyle { style->
-                setupSource(style)
-                setUpImage(style)
-                setUpMarkerLayer(style)
-                setUpInfoWindowLayer(style) }
-        }
+        mapboxMap.getStyle { style->
+            setupSource(style)
+            setUpImage(style)
+            setUpMarkerLayer(style)
+            setUpInfoWindowLayer(style) }
     }
     /**
      * Adds the GeoJSON source to the map
@@ -126,10 +193,7 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
      * Updates the display of data on the map after the FeatureCollection has been modified
      */
     private fun refreshSource() {
-        if (source != null && featureCollection != null)
-        {
-            source.setGeoJson(featureCollection)
-        }
+        source.setGeoJson(featureCollection)
     }
     /**
      * Setup a layer with maki icons, eg. west coast city.
@@ -248,11 +312,7 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
         }
         override fun onPostExecute(featureCollection:FeatureCollection) {
             super.onPostExecute(featureCollection)
-            val activity = activityRef.get()
-            if (featureCollection == null || activity == null)
-            {
-                return
-            }
+            val activity = activityRef.get() ?: return
             // This example runs on the premise that each GeoJSON Feature has a "selected" property,
             // with a boolean value. If your data's Features don't have this boolean property,
             // add it to the FeatureCollection 's features with the following code:
@@ -341,7 +401,7 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
         override fun onPostExecute(bitmapHashMap:HashMap<String, Bitmap>) {
             super.onPostExecute(bitmapHashMap)
             val activity = activityRef.get()
-            if (activity != null && bitmapHashMap != null)
+            if (activity != null)
             {
                 activity.setImageGenResults(bitmapHashMap)
                 if (refreshSource)
@@ -401,10 +461,7 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
     }
     public override fun onDestroy() {
         super.onDestroy()
-        if (mapboxMap != null)
-        {
-            mapboxMap.removeOnMapClickListener(this)
-        }
+        mapboxMap.removeOnMapClickListener(this)
         mapView.onDestroy()
     }
     companion object {
