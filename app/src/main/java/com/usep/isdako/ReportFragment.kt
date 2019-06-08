@@ -49,7 +49,6 @@ class ReportFragment : androidx.fragment.app.Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var database: DatabaseReference
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
@@ -96,11 +95,15 @@ class ReportFragment : androidx.fragment.app.Fragment() {
         }
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>, view: View,
-                position: Int, id: Long
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
             ) {
-                (parent.getChildAt(0) as TextView).setTextColor(Color.WHITE)
-                var text : String = parent!!.getItemAtPosition(position) as String
+                if(parent.getChildAt(0) != null) {
+                    (parent.getChildAt(0) as TextView).setTextColor(Color.WHITE)
+                }
+                val text : String = parent.getItemAtPosition(position) as String
                 species = text
             }
 

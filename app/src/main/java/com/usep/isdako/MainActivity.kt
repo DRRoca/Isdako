@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity(),
             }
             R.id.navReport -> {
                 supportFragmentManager
-                    .popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    .popBackStack("report", FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.fragment_container, reportFragment)

@@ -11,41 +11,68 @@
         tools:context=".MainActivity"
         tools:openDrawer="end">
 
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <!--<android.support.v7.widget.Toolbar-->
+    <!--<LinearLayout-->
     <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="?attr/actionBarSize"-->
-    <!--android:background="@color/lightgreennavbar"-->
-    <!--android:id="@+id/toolbar"-->
-    <!--android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
-    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-    <!--android:elevation="4dp" tools:visibility="visible"/>-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
 
-    <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <!--&lt;!&ndash;<android.support.v7.widget.Toolbar&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:background="@color/lightgreennavbar"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/toolbar"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"&ndash;&gt;-->
+    <!--&lt;!&ndash;app:popupTheme="@style/ThemeOverlay.AppCompat.Light"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:elevation="4dp" tools:visibility="visible"/>&ndash;&gt;-->
 
-        <io.proximi.proximiiomap.ProximiioMapView
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+    <!--<FrameLayout-->
+            <!--android:id="@+id/fragment_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
 
-        <!--<com.mapbox.mapboxsdk.maps.MapView-->
-                <!--android:id="@+id/mapView"-->
+        <!--<io.proximi.proximiiomap.ProximiioMapView-->
+                <!--android:id="@+id/map"-->
                 <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--mapbox:mapbox_cameraTargetLat = "7.0548782"-->
-                <!--mapbox:mapbox_cameraTargetLng = "125.5680292"-->
-                <!--mapbox:mapbox_cameraZoom = "12"/>-->
+                <!--android:layout_height="match_parent"/>-->
 
-    </FrameLayout>
+        <!--&lt;!&ndash;<com.mapbox.mapboxsdk.maps.MapView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/mapView"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="match_parent"&ndash;&gt;-->
+                <!--&lt;!&ndash;mapbox:mapbox_cameraTargetLat = "7.0548782"&ndash;&gt;-->
+                <!--&lt;!&ndash;mapbox:mapbox_cameraTargetLng = "125.5680292"&ndash;&gt;-->
+                <!--&lt;!&ndash;mapbox:mapbox_cameraZoom = "12"/>&ndash;&gt;-->
+
+    <!--</FrameLayout>-->
+    <!--</LinearLayout>-->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <io.proximi.proximiiomap.ProximiioMapView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+            />
+
+            <!--<com.mapbox.mapboxsdk.maps.MapView-->
+            <!--android:id="@+id/mapView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--mapbox:mapbox_cameraTargetLat = "7.0548782"-->
+            <!--mapbox:mapbox_cameraTargetLng = "125.5680292"-->
+            <!--mapbox:mapbox_cameraZoom = "12"/>-->
+            <TextView
+                    android:text="  "
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="10dp"
+                    android:layout_height="wrap_content" android:id="@+id/textView2"/>
+
+        </FrameLayout>
     </LinearLayout>
-
 
 
     <!--</LinearLayout>-->

@@ -1,6 +1,7 @@
 package com.usep.isdako
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.*
 import android.os.AsyncTask
 import android.os.Bundle
@@ -47,6 +48,9 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
     private lateinit var mDatabase:DatabaseReference
     private lateinit var jsonDataTask:AsyncTask<Void, Void, FeatureCollection>
     private lateinit var feature:Array<Feature>
+    lateinit var type : String
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Mapbox access token is configured here. This needs to be called either in your application
@@ -58,50 +62,67 @@ class ReportMapActivity:AppCompatActivity(), OnMapReadyCallback, MapboxMap.OnMap
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+        type = intent.getStringExtra(StartActivity.TUNA_TYPE)
+        if(type == "none"){
+
+
+        val mainActivityIntent = Intent (this, MainActivity::class.java)
+
+        //            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(mainActivityIntent)
+        }
+
     }
     override fun onMapReady(@NonNull mapboxMap:MapboxMap) {
         this.mapboxMap = mapboxMap
         mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-            mDatabase = FirebaseDatabase.getInstance().getReference("reports/")
-            mDatabase.addValueEventListener(object: ValueEventListener {
-                override fun onDataChange(reportsSnapshot:DataSnapshot) {
-                    // Get Post object and use the values to update the UI
-                    // ...
-                    val jsonCombined = StringBuilder()
-                    var delim = ""
-                    for (reportSnapshot in reportsSnapshot.children) {
-                        if (reportSnapshot.child("properties").child("species").value.toString() == "Albacore Tuna") {
-                            val json = Gson().toJson(reportSnapshot.value)
-                            jsonCombined.append(delim).append(json)
-                            delim = ","
+            Log.i("TunaType", type)
+            if(type != "none") {
+                mDatabase = FirebaseDatabase.getInstance().getReference("reports/")
+                mDatabase.keepSynced(true)
+                mDatabase.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(reportsSnapshot: DataSnapshot) {
+                        // Get Post object and use the values to update the UI
+                        // ...
+                        val jsonCombined = StringBuilder()
+                        var delim = ""
+                        for (reportSnapshot in reportsSnapshot.children) {
+                            if (reportSnapshot.child("properties").child("species").value.toString() == type) {
+                                val json = Gson().toJson(reportSnapshot.value)
+                                jsonCombined.append(delim).append(json)
+                                delim = ","
+                            }
                         }
+                        // Object object = reportsSnapshot.getValue(Object.class);
+                        //
+                        val json = ("{\n" +
+                                " \"type\": \"FeatureCollection\",\n" +
+                                " \"features\": [" +
+                                jsonCombined.toString() +
+                                " ]\n" +
+                                "}")
+                        Log.i("FirebaseJSON", json)
+                        if (::jsonDataTask.isInitialized) {
+                            return
+                        }
+                        jsonDataTask = LoadGeoJsonDataTask(this@ReportMapActivity, json).execute()
                     }
-                    // Object object = reportsSnapshot.getValue(Object.class);
-                    //
-                    val json = ("{\n" +
-                            " \"type\": \"FeatureCollection\",\n" +
-                            " \"features\": [" +
-                            jsonCombined.toString() +
-                            " ]\n" +
-                            "}")
-                    Log.i("FirebaseJSON", json)
-                    if(::jsonDataTask.isInitialized){
-                        return
-                    }
-                    jsonDataTask = LoadGeoJsonDataTask(this@ReportMapActivity, json).execute()
-                }
 
-                override fun onCancelled(databaseError:DatabaseError) {
-                    // Getting Post failed, log a message
-                    Log.w("Main", "loadPost:onCancelled", databaseError.toException())
-                    // ...
-                }
-            })
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // Getting Post failed, log a message
+                        Log.w("Main", "loadPost:onCancelled", databaseError.toException())
+                        // ...
+                    }
+                })
+            }
             mapboxMap.addOnMapClickListener(this@ReportMapActivity)
             enableLocationComponent(it)
             mapboxMap.uiSettings.isAttributionEnabled = false
             mapboxMap.uiSettings.isLogoEnabled = false
 //            mapboxMap.uiSettings.isz = true
+        }
+        if(type == "none"){
+            finish()
         }
     }
 

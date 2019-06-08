@@ -19,6 +19,7 @@ class TunaDetailsFragment : androidx.fragment.app.Fragment() {
 
         private const val TUNAMODEL = "model"
 
+
         fun newInstance(tunaModel: TunaModel): TunaDetailsFragment {
             val args = Bundle()
             args.putSerializable(TUNAMODEL, tunaModel)
@@ -26,6 +27,8 @@ class TunaDetailsFragment : androidx.fragment.app.Fragment() {
             fragment.arguments = args
             return fragment
         }
+
+        const val TUNA_TYPE : String = "com.usep.isdako.TUNA_TYPE"
     }
 
     //3
@@ -47,6 +50,7 @@ class TunaDetailsFragment : androidx.fragment.app.Fragment() {
         showMap.setOnClickListener {
             Log.i("Species Type Selected", model.name)
             val activityIntent = Intent (this@TunaDetailsFragment.context, ReportMapActivity::class.java)
+            activityIntent.putExtra(TUNA_TYPE,model.name)
             startActivity(activityIntent)
 
         }
