@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:background="@drawable/background">
+
+  <data>
+
+    <variable
+      name="tunaModel"
+      type="com.usep.isdako.TunaModel" />
+  </data>
+
+  <ScrollView
+          android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/name"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/tuna_detail_name_margin_top"
+        android:layout_marginBottom="0dp"
+        android:text="@{tunaModel.name}" />
+
+      <ImageView
+        android:id="@+id/tuna_image"
+        imageResource="@{tunaModel.imageResId}"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tuna_detail_image_size"
+        android:layout_marginTop="@dimen/tuna_detail_image_margin_vertical"
+        android:layout_marginBottom="@dimen/tuna_detail_image_margin_vertical"
+        android:adjustViewBounds="true"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop" />
+
+      <TextView
+              android:id="@+id/description"
+              style="@style/TextAppearance.AppCompat.Body1"
+              android:layout_width="match_parent"
+              android:layout_height="262dp"
+              android:layout_marginLeft="@dimen/tuna_detail_description_margin_left"
+              android:layout_marginTop="0dp"
+              android:layout_marginRight="@dimen/tuna_detail_description_margin_right"
+              android:layout_marginBottom="@dimen/tuna_detail_description_margin_bottom"
+              android:autoLink="web"
+              android:text="@{tunaModel.text}"/>
+      <Button
+              android:text="Show Report Map"
+              android:layout_width="@dimen/fui_auth_method_button_width"
+              android:layout_height="@dimen/fui_min_height_target" android:id="@+id/showMap"/>
+
+    </LinearLayout>
+
+
+
+  </ScrollView>
+</layout>

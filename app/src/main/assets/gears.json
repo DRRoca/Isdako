@@ -1,0 +1,79 @@
+{
+  "gears": [
+    {
+      "title": "Beach and Boat Seines",
+      "image" : "https://www.seafoodwatch.org/-/m/sfw/images/fishing-gear/beach-and-boat-seines.png?la=en",
+      "description": "Seines are long nets, with long ropes on each end, which herd fish when dragged or towed.  The catch of unwanted species can be an issue in these fisheries.",
+      "label": "Medium"
+    },
+
+    {
+      "title": "Bottom Trawls",
+      "image" : "https://thisfish.info/media/cache/de/24/de245f43b66fd6d973875d2b7a87cb86.jpg",
+      "description": "Bottom trawls are cone-shaped nets that are pulled along the seafloor to catch bottom-dwellers. This not only picks up target fish species but also many other creatures.",
+      "label": "High"
+    },
+
+    {
+      "title": "Dredges",
+      "image" : "https://cdn2.webdamdb.com/md_fIKa9MDD1Gyp.png?1512006883",
+      "description": "Dredges are metal-framed baskets that are dragged across the seafloor to collect clams, cockles, etc. This method can have significant impact on seafloor habitat and bottom-dwelling species.",
+      "label": "Medium"
+    },
+
+    {
+      "title": "Gillnets",
+      "image" : "https://cdn2.webdamdb.com/md_r9rYeWXYzDap.png?1512006920",
+      "description": "Gillnets are walls of net that are almost invisible to fish. Gillnets can accidentally catch vulnerable ocean animals. ",
+      "label": "Medium"
+    },
+
+    {
+      "title": "Handlines and Jigs",
+      "image" : "http://safinacenter.org/wp-content/uploads/jpg-71",
+      "description": "Handlines are used to catch species like tuna, snapper and grouper. These hand-held fishing methods are considered environmentally responsible because there’s virtually no catch of unwanted marine life or habitat impacts ",
+      "label": "Low"
+
+    },
+
+    {
+      "title": "Harpoons",
+      "image" : "https://www.seafoodwatch.org/-/m/sfw/images/fishing-gear/harpoon.png?la=en",
+      "description": "Harpoons are poles that have a steel point with one or more barbs at the end and usually a retrieving line. Bycatch of unwanted marine life is not a concern because the species and size of the fish are identified before it’s caught.",
+      "label": "Low"
+    },
+
+    {
+      "title": "Longlines",
+      "image" : "http://www.fao.org/figis/servlet/IRS?iid=7228",
+      "description": "Longlines have a mainline, that’s strung with evenly spaced smaller lines with baited hooks. A variety of species, including endangered sea turtles, sharks, etc are also attracted to the bait. ",
+      "label": "Medium"
+    },
+    {
+      "title": "Fish aggregating devices (FADs)",
+      "image" : "http://www.southteksl.com/images/article-applications/fad.png",
+      "description": "FADs are like deadly magnets for fish. They float in the ocean and are used to attract tuna. FADs endangered the critically overfished bluefin, yellowfin and bigeye tuna. ",
+      "label": "Destructive"
+    },
+    {
+      "title": "Poles-and-Lines",
+      "image" : "https://iss-foundation.org/wp-content/uploads/cache/2015/06/fishingMethods_v1-PoleLine/2763276850/1625246650.jpg",
+      "description": "Pole-and-lines are poles with a single line, hook and bait that are used to catch a variety of fish. Pole-and-line gears have very low catch of unwanted marine life.",
+      "label": "Low"
+    },
+
+    {
+      "title": "Purse Seines",
+      "image" : "https://cdn2.webdamdb.com/md_0tTqold5JI7x.png?1512006853",
+      "description": "Purse seines use a large wall of netting to encircle schools of fish. When purse seiners use FADs, the accidental catch of juvenile fish, and other vulnerable marine life can be a serious problem.",
+      "label": "High"
+    },
+    {
+      "title": "Trolling Lines",
+      "image" : "http://www.fao.org/figis/servlet/IRS?iid=7250",
+      "description": "Trolling lines catch species such as salmon, albacore tuna, etc. by luring them with moving fishing lines baited with hooks. This fishing method has low catch of unwanted marine life.",
+      "label": "Low"
+    }
+
+  ]
+}

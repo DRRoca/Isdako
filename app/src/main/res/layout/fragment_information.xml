@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InformationFragment"
+    android:background="@color/lightgreen">
+
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:id="@+id/loginBack" android:layout_marginTop="1dp" android:layout_marginStart="1dp"
+            android:background="#00FFFFFF" android:backgroundTint="#00FFFFFF" android:clickable="true"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"
+            android:scaleType="fitCenter"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="50dp" android:layout_marginStart="0dp"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INFORMATION"
+            android:textColor="@color/darkgreen"
+            android:layout_alignParentStart="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="220dp"
+            android:textAlignment="center"
+            android:textSize="24sp" android:fontFamily="sans-serif-black" android:layout_marginStart="0dp"
+            android:id="@+id/informationText"/>
+    <Button
+            android:layout_width="153dp"
+            android:layout_height="153dp"
+            android:id="@+id/buttonFishInfo" android:background="@drawable/fishes"
+            android:layout_alignParentStart="true" android:layout_marginStart="130dp"
+            android:layout_marginTop="29dp" android:layout_below="@+id/informationText"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="132dp"/>
+
+    <Button
+            android:layout_width="153dp"
+            android:layout_height="153dp"
+            android:id="@+id/buttonGearInfo" android:background="@drawable/g" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="130dp" android:layout_below="@+id/buttonFishInfo"
+            android:layout_marginTop="17dp" android:layout_alignParentStart="true" android:layout_marginStart="130dp"/>
+</RelativeLayout>

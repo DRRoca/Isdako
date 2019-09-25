@@ -3,4 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="lightgreennavbar">#417e77</color>
+    <color name="darkgreennavbar">#a7d8d5</color>
+    <color name="darkgreen">#004a4d</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lightgreen">#6baaaf</color>
+    <color name="colorLow">#4183D7</color>
+    <color name="colorDestructive">#D2527F</color>
+    <color name="colorHigh">#F2784B</color>
+    <color name="colorMedium">#26A65B</color>
+    <color name="bluelight">#209DBC</color>
 </resources>
